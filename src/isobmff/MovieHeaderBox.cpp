@@ -20,7 +20,7 @@ MovieHeaderBox::MovieHeaderBox() {
 //	m_matrix = NULL;
 //	m_pre_defined = NULL;
 	m_next_track_id = 0;
-	m_parent = NULL;
+	// m_parent = NULL;
 }
 
 MovieHeaderBox::~MovieHeaderBox() {
@@ -29,7 +29,7 @@ MovieHeaderBox::~MovieHeaderBox() {
 
 void MovieHeaderBox::Read(uint8_t* buf, int32_t len) {
 	ReadFullBoxHeader(buf, len);
-//	m_parent = static_cast<MovieBox *>(GetParent());
+	// m_parent = static_cast<MovieBox *>(GetParent());
 
 	if(GetVersion() == 1) {
 		m_offset += bin_read_uint64(m_ptr + m_offset, &m_creation_time);

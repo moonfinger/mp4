@@ -12,7 +12,7 @@
 #include <stdint.h>
 
 #include "FullBox.h"
-//#include "MovieBox.h"
+// #include "MovieBox.h"
 
 using namespace std;
 
@@ -51,7 +51,7 @@ private:
 	uint32_t m_next_track_id;
 
 private:
-//	MovieBox* m_parent;
+	// MovieBox* m_parent;
 };
 
 #endif /* ISOBMFF_MOVIEHEADERBOX_H_ */

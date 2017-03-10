@@ -6,6 +6,7 @@
  */
 
 #include "SampleEntry.h"
+#include "../misc/bin.h"
 
 SampleEntry::SampleEntry() {
 	// TODO Auto-generated constructor stub
@@ -17,6 +18,10 @@ SampleEntry::~SampleEntry() {
 }
 
 void SampleEntry::ReadEntryHeader(uint8_t* buf, int32_t len) {
+	ReadBoxHeader(buf, len);
+
+	m_offset += bin_read_bytes(m_ptr + m_offset, sizeof(m_reserved_0), m_reserved_0);
+	m_offset += bin_read_uint16(m_ptr + m_offset, &m_data_reference_index);
 }
 
 uint8_t* SampleEntry::GetReserved0() {
@@ -39,6 +44,17 @@ AudioSampleEntry::~AudioSampleEntry() {
 }
 
 void AudioSampleEntry::Read(uint8_t* buf, int32_t len) {
+	ReadEntryHeader(buf, len);
+
+	for(uint32_t i = 0; i < sizeof(m_reserved_1) / sizeof(uint32_t); i++) {
+		m_offset += bin_read_uint32(m_ptr + m_offset, &m_reserved_1[i]);
+	}
+
+	m_offset += bin_read_uint16(m_ptr + m_offset, &m_channelcount);
+	m_offset += bin_read_uint16(m_ptr + m_offset, &m_samplesize);
+	m_offset += bin_read_uint16(m_ptr + m_offset, &m_pre_defined);
+	m_offset += bin_read_uint16(m_ptr + m_offset, &m_reserved_2);
+	m_offset += bin_read_uint32(m_ptr + m_offset, &m_samplerate);
 }
 
 uint32_t* AudioSampleEntry::GetReserved1() {

@@ -33,8 +33,8 @@ public:
 	void AddTrackBox(TrackBox* trak);
 
 private:
-	MovieHeaderBox*    m_mvhd;			// mandatory, exactly one
-	vector<TrackBox *> m_trak_list;		// mandatory, one or more
+	MovieHeaderBox* m_mvhd;	// mandatory, exactly one
+	vector<TrackBox *> m_trak_list; // mandatory, one or more
 };
 
 #endif /* ISOBMFF_MOVIEBOX_H_ */
